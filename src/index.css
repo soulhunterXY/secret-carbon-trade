@@ -1,0 +1,205 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Trading Desk Dark Theme */
+    --background: 240 10% 8%;
+    --foreground: 120 10% 95%;
+
+    --card: 240 8% 12%;
+    --card-foreground: 120 10% 95%;
+
+    --popover: 240 8% 12%;
+    --popover-foreground: 120 10% 95%;
+
+    /* Carbon Green Primary */
+    --primary: 142 72% 29%;
+    --primary-foreground: 120 20% 98%;
+    --primary-glow: 142 72% 45%;
+
+    /* Trading Green Accent */
+    --secondary: 120 100% 25%;
+    --secondary-foreground: 120 20% 98%;
+
+    /* Muted Green for Charts */
+    --muted: 240 8% 15%;
+    --muted-foreground: 142 20% 65%;
+
+    /* Bright Trading Green */
+    --accent: 120 100% 40%;
+    --accent-foreground: 240 10% 8%;
+
+    /* Trading Red for Loss */
+    --destructive: 0 84% 55%;
+    --destructive-foreground: 0 0% 98%;
+
+    /* Trading Interface Elements */
+    --border: 142 20% 20%;
+    --input: 240 8% 15%;
+    --ring: 142 72% 45%;
+
+    --radius: 0.5rem;
+
+    /* Custom Carbon Trading Variables */
+    --carbon-primary: 142 72% 29%;
+    --carbon-glow: 142 72% 45%;
+    --trading-green: 120 100% 40%;
+    --trading-red: 0 84% 55%;
+    --chart-background: 240 8% 10%;
+    --grid-color: 142 20% 18%;
+    
+    /* Gradients */
+    --gradient-carbon: linear-gradient(135deg, hsl(var(--carbon-primary)), hsl(var(--carbon-glow)));
+    --gradient-trading: linear-gradient(90deg, hsl(var(--background)), hsl(var(--card)));
+    --gradient-glow: linear-gradient(135deg, hsl(var(--carbon-glow) / 0.3), hsl(var(--trading-green) / 0.2));
+    
+    /* Shadows and Effects */
+    --shadow-carbon: 0 0 30px hsl(var(--carbon-glow) / 0.3);
+    --shadow-trading: 0 4px 20px hsl(var(--background) / 0.5);
+    --glow-intense: 0 0 40px hsl(var(--carbon-glow) / 0.6);
+
+    /* Animation Variables */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.15s ease-out;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Same as root - always dark trading theme */
+    --background: 240 10% 8%;
+    --foreground: 120 10% 95%;
+    --card: 240 8% 12%;
+    --card-foreground: 120 10% 95%;
+    --popover: 240 8% 12%;
+    --popover-foreground: 120 10% 95%;
+    --primary: 142 72% 29%;
+    --primary-foreground: 120 20% 98%;
+    --secondary: 120 100% 25%;
+    --secondary-foreground: 120 20% 98%;
+    --muted: 240 8% 15%;
+    --muted-foreground: 142 20% 65%;
+    --accent: 120 100% 40%;
+    --accent-foreground: 240 10% 8%;
+    --destructive: 0 84% 55%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 142 20% 20%;
+    --input: 240 8% 15%;
+    --ring: 142 72% 45%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-mono;
+    background: linear-gradient(135deg, hsl(var(--background)), hsl(var(--card)));
+  }
+}
+
+@layer components {
+  /* Trading Interface Components */
+  .trading-card {
+    @apply bg-card border border-border rounded-lg shadow-lg;
+    background: linear-gradient(135deg, hsl(var(--card)), hsl(var(--muted)));
+    box-shadow: var(--shadow-trading);
+  }
+  
+  .carbon-glow {
+    box-shadow: var(--shadow-carbon);
+    transition: var(--transition-smooth);
+  }
+  
+  .carbon-glow:hover {
+    box-shadow: var(--glow-intense);
+    transform: scale(1.02);
+  }
+  
+  .trading-grid {
+    background-image: 
+      linear-gradient(hsl(var(--grid-color)) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--grid-color)) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+  
+  .price-up {
+    @apply text-accent;
+    text-shadow: 0 0 10px hsl(var(--accent) / 0.5);
+  }
+  
+  .price-down {
+    @apply text-destructive;
+    text-shadow: 0 0 10px hsl(var(--destructive) / 0.5);
+  }
+  
+  .binary-code {
+    font-family: 'Courier New', monospace;
+    color: hsl(var(--carbon-glow) / 0.6);
+    animation: binary-flow 3s linear infinite;
+  }
+  
+  .wind-turbine {
+    animation: rotate 4s linear infinite;
+  }
+}
+
+@layer utilities {
+  .animate-binary-flow {
+    animation: binary-flow 3s linear infinite;
+  }
+  
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  
+  .animate-rotate {
+    animation: rotate 4s linear infinite;
+  }
+}
+
+@keyframes binary-flow {
+  0% { opacity: 0; transform: translateY(-10px); }
+  50% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(10px); }
+}
+
+@keyframes glow {
+  from { box-shadow: var(--shadow-carbon); }
+  to { box-shadow: var(--glow-intense); }
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
